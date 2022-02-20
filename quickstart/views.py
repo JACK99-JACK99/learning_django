@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
-from rest_framework import Viewsets
+from rest_framework import viewsets
 from rest_framework import permissions
 from .serializers import UserSerializer, GroupSerializer
 # Create your views here.
 
 
-class UserViewset(Viewsets.ModalViewSet):
+class UserViewset(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.  
     """
@@ -14,10 +14,10 @@ class UserViewset(Viewsets.ModalViewSet):
     serializer_class = UserSerializer 
     permission_classes = [permissions.IsAuthenticated]   
 
-class GroupViewset(Viewsets.ModalviewSet):
+class GroupViewset(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.  
     """
-    query = Group.objects.all()
+    queryset = Group.objects.all()
     serializer_class = GroupSerializer      
-    permission_classes = [permissions.IsAutheticated]
+    permission_classes = [permissions.IsAuthenticated]
